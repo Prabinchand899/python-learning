@@ -10,20 +10,31 @@ contains the previous Hi-score. You need to write a program to update the Hiscor
 def game():
     # Dummy implementation of the game function
     import random
-    return random.randint(0, 1000)
-
-current_score = game()
-
-with open("Hi-score.txt", "r") as f:
-    hi_score_str =f.read().strip() or "0"
-    hi_score = int(hi_score_str)
-    if current_score > hi_score:
-        with open("Hi-score.txt", "w") as f:
-            f.write(str(current_score))
-            print("You beat the hi-score!")
+    print("You are playing a game>>>")
+    return  random.randint(0, 1000)
     
+
+score = game()
+
+
+
+with open("HI-score.txt", "r") as f:
+    hiscore = f.read()
+    print(f"Your score: {score}")
+    print(f"Hi score: {int(hiscore)}")
+    if (hiscore==""):
+        with open("Hi-score.txt","w") as f:
+            f.write(str(score))
     else:
-        print("You did not beat the hi-score.")
+        if int(hiscore)>score:
+            print("You didn't beat the hi score!")
+        elif int(hiscore)==score:
+            print("Your didn't beat the hi score!")
+        else:
+            with open("Hi-score.txt" , "w") as f:
+                f.write(str(score))
+                print("Congratulations!, you beat the hi score.")
 
 
-    
+
+   
